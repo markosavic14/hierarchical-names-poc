@@ -5,9 +5,9 @@ module testbench;
 	typedef enum {IDLE, WARMUP, TOAST, COOL_DOWN} state_type;
 	state_type state_sv;
 	
-	top top_h(.iiA(a));
+	wrapper dut(.iiA(a));
 
-	assign state_con = top_h.state_int;
+	assign state_con = dut.state_int;
 	
 	always @(state_con) begin
 		case (state_con)
