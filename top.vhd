@@ -2,17 +2,17 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity top is port(
-	iiA  	: in  std_logic;
-	state_int : out std_logic_vector(1 downto 0)
+	iiA  	: in  std_logic_vector(1 downto 0)
 	);
 end entity;
  
 architecture beh of top is
 	type state_type is (IDLE, WARMUP, TOAST, COOL_DOWN);
 	signal state_con : state_type;
+	signal state_int : std_logic_vector(1 downto 0);
 	   
 	component sub is port ( 
-		iA  	: in  std_logic
+		iA  	: in  std_logic_vector(1 downto 0)
 	);
 	end component;
 

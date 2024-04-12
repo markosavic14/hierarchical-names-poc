@@ -1,11 +1,13 @@
 module testbench;
 
-	logic a = 0;
+	logic[1:0] a = 0;
 	logic[1:0] state_con;
 	typedef enum {IDLE, WARMUP, TOAST, COOL_DOWN} state_type;
 	state_type state_sv;
 	
-	top top_h(.iiA(a), .state_int(state_con));
+	top top_h(.iiA(a));
+
+	assign state_con = top_h.state_int;
 	
 	always @(state_con) begin
 		case (state_con)
@@ -18,9 +20,13 @@ module testbench;
 
 	initial begin
 		#5
-		a = ~a;
+		a = 1;
 		#5
-		a = ~a;
+		a = 2;
+		#5
+		a = 3;
+		#5
+		a = 0;
 	end
 
 endmodule
